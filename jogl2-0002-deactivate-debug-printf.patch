@@ -1,0 +1,59 @@
+--- a/src/nativewindow/native/x11/XineramaHelper.c
++++ b/src/nativewindow/native/x11/XineramaHelper.c
+@@ -31,7 +31,7 @@
+ #include <stdio.h>
+ #include <dlfcn.h>
+ 
+-// #define DEBUG 1
++#define XINERAMA_DEBUG 0
+ 
+ static const char* XinExtName = "XINERAMA";
+ 
+@@ -82,7 +82,7 @@ void* XineramaGetLibHandle() {
+     xineramaLibHandle = dlopen(XineramaLibNames[i], RTLD_LAZY | RTLD_GLOBAL);
+   }
+ 
+-  #ifdef DEBUG
++  #if XINERAMA_DEBUG
+     if(NULL!=xineramaLibHandle) {
+       fprintf(stderr, "XineramaGetLibHandle: using lib %s -> %p\n", XineramaLibNames[i-1], xineramaLibHandle);
+     } else {
+@@ -94,7 +94,7 @@ void* XineramaGetLibHandle() {
+ }
+ 
+ Bool XineramaReleaseLibHandle(void* xineramaLibHandle) {
+-  #ifdef DEBUG
++  #if XINERAMA_DEBUG
+     fprintf(stderr, "XineramaReleaseLibHandle: release lib %p\n", xineramaLibHandle);
+   #endif
+   if(NULL==xineramaLibHandle) {
+@@ -111,17 +111,17 @@ void* XineramaGetQueryFunc(void *xineram
+     }
+ 
+     #ifdef __sun_obsolete
+-      #ifdef DEBUG
++      #if XINERAMA_DEBUG
+         fprintf(stderr, "XineramaGetQueryFunc: trying func %p -> %s\n", xineramaLibHandle, XineramaGetInfoName);
+       #endif
+       funcptr = dlsym(xineramaLibHandle, XineramaGetInfoName);
+     #else
+-      #ifdef DEBUG
++      #if XINERAMA_DEBUG
+         fprintf(stderr, "XineramaGetQueryFunc: trying func %p -> %s\n", xineramaLibHandle, XineramaIsActiveName);
+       #endif
+       funcptr = dlsym(xineramaLibHandle, XineramaIsActiveName);
+     #endif
+-    #ifdef DEBUG
++    #if XINERAMA_DEBUG
+       fprintf(stderr, "XineramaGetQueryFunc: got func %p\n", funcptr);
+     #endif
+     return funcptr;
+@@ -139,7 +139,7 @@ Bool XineramaIsEnabled(void *xineramaQue
+   gotXinExt = XQueryExtension(display, XinExtName, &major_opcode,
+                               &first_event, &first_error);
+ 
+-  #ifdef DEBUG
++  #if XINERAMA_DEBUG
+     fprintf(stderr, "XineramaIsEnabled: has Xinerama Ext: ext %d, query-func %p\n", gotXinExt, xineramaQueryFunc);
+   #endif
+ 

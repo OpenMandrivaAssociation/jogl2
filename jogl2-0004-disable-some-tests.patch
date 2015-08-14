@@ -1,0 +1,19 @@
+--- a/make/build-test.xml
++++ b/make/build-test.xml
+@@ -29,6 +29,7 @@
+         <property name="java.part.test.all"   value="com/jogamp/** jogamp/**"/>
+         <property name="java.part.test.android" value="com/jogamp/opengl/test/android/**"/>
+         <property name="java.part.test.oculusvr" value="com/jogamp/opengl/test/junit/jogl/stereo/ovr/**"/>
++        <property name="java.part.test.fedora" value="com/jogamp/opengl/test/junit/jogl/acore/TestVersionSemanticsNOUI.java com/jogamp/opengl/test/junit/jogl/demos/es2/newt/TestGearsES2NEWT.java"/>
+         <property name="java.dir.test"        value="com/jogamp/opengl/test"/>
+         <property name="java.dir.junit"       value="${java.dir.test}/junit"/>
+         <property name="java.dir.bugs"        value="${java.dir.test}/bugs"/>
+@@ -66,7 +67,7 @@
+ 
+     <target name="test.compile.javase.generic">
+         <javac destdir="${classes}"
+-               excludes="${java.part.test.android} ${java.part.test.oculusvr}"
++               excludes="${java.part.test.fedora} ${java.part.test.android} ${java.part.test.oculusvr}"
+                fork="yes"
+                includeAntRuntime="false"
+                memoryMaximumSize="${javac.memorymax}"

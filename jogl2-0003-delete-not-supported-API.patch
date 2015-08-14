@@ -1,0 +1,115 @@
+--- a/src/jogl/classes/jogamp/opengl/gl2/fixme/GLObjectTracker.java
++++ b/src/jogl/classes/jogamp/opengl/gl2/fixme/GLObjectTracker.java
+@@ -436,8 +436,7 @@ public class GLObjectTracker {
+       if ((cur != null) &&
+           (cur instanceof GLContextImpl)) {
+         GLContextImpl curImpl = (GLContextImpl) cur;
+-        if (deletedObjectPool != null &&
+-            deletedObjectPool == curImpl.getDeletedObjectTracker()) {
++        if (deletedObjectPool != null) {
+           // Should be safe to delete these objects now
+           try {
+             delete((GL2)curImpl.getGL());
+@@ -464,11 +463,6 @@ public class GLObjectTracker {
+           s = "current context was not a GLContextImpl";
+         } else if (deletedObjectPool == null) {
+           s = "no current deletedObjectPool";
+-        } else if (deletedObjectPool != ((GLContextImpl) cur).getDeletedObjectTracker()) {
+-          s = "deletedObjectTracker didn't match";
+-          if (((GLContextImpl) cur).getDeletedObjectTracker() == null) {
+-            s += " (other was null)";
+-          }
+         } else {
+           s = "unknown reason";
+         }
+@@ -668,14 +662,6 @@ public class GLObjectTracker {
+             };
+           name = "buffer";
+           break;
+-        case BUFFERS_ARB:
+-          deleter = new Deleter() {
+-              public void delete(GL2 gl, int obj) {
+-                gl.glDeleteBuffersARB(1, new int[] { obj }, 0);
+-              }
+-            };
+-          name = "ARB buffer";
+-          break;
+         case FENCES_APPLE:
+           deleter = new Deleter() {
+               public void delete(GL2 gl, int obj) {
+@@ -692,22 +678,6 @@ public class GLObjectTracker {
+             };
+           name = "NV fence";
+           break;
+-        case FRAGMENT_SHADERS_ATI:
+-          deleter = new Deleter() {
+-              public void delete(GL2 gl, int obj) {
+-                gl.glDeleteFragmentShaderATI(obj);
+-              }
+-            };
+-          name = "ATI fragment shader";
+-          break;
+-        case FRAMEBUFFERS_EXT:
+-          deleter = new Deleter() {
+-              public void delete(GL2 gl, int obj) {
+-                gl.glDeleteFramebuffersEXT(1, new int[] { obj }, 0);
+-              }
+-            };
+-          name = "EXT framebuffer";
+-          break;
+         case LISTS:
+           deleter = new Deleter() {
+               public void delete(GL2 gl, int obj) {
+@@ -748,14 +718,6 @@ public class GLObjectTracker {
+             };
+           name = "ARB program object";
+           break;
+-        case PROGRAMS_NV:
+-          deleter = new Deleter() {
+-              public void delete(GL2 gl, int obj) {
+-                gl.glDeleteProgramsNV(1, new int[] { obj }, 0);
+-              }
+-            };
+-          name = "NV program";
+-          break;
+         case QUERIES:
+           deleter = new Deleter() {
+               public void delete(GL2 gl, int obj) {
+@@ -764,22 +726,6 @@ public class GLObjectTracker {
+             };
+           name = "query";
+           break;
+-        case QUERIES_ARB:
+-          deleter = new Deleter() {
+-              public void delete(GL2 gl, int obj) {
+-                gl.glDeleteQueriesARB(1, new int[] { obj }, 0);
+-              }
+-            };
+-          name = "ARB query";
+-          break;
+-        case RENDERBUFFERS_EXT:
+-          deleter = new Deleter() {
+-              public void delete(GL2 gl, int obj) {
+-                gl.glDeleteRenderbuffersEXT(1, new int[] { obj }, 0);
+-              }
+-            };
+-          name = "EXT renderbuffer";
+-          break;
+         case SHADER_OBJECTS:
+           deleter = new Deleter() {
+               public void delete(GL2 gl, int obj) {
+@@ -796,14 +742,6 @@ public class GLObjectTracker {
+             };
+           name = "texture";
+           break;
+-        case VERTEX_ARRAYS_APPLE:
+-          deleter = new Deleter() {
+-              public void delete(GL2 gl, int obj) {
+-                gl.glDeleteVertexArraysAPPLE(1, new int[] { obj }, 0);
+-              }
+-            };
+-          name = "APPLE vertex array";
+-          break;
+         case VERTEX_SHADERS_EXT:
+           deleter = new Deleter() {
+               public void delete(GL2 gl, int obj) {
