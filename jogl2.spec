@@ -1,9 +1,11 @@
+%{?_javapackages_macros:%_javapackages_macros}
+
 %global src_name jogl-v%{version}
 
 Name:           jogl2
 Epoch:          2
 Version:        2.2.4
-Release:        %mkrel 1
+Release:        1
 Summary:        Java bindings for the OpenGL API
 
 Group:          Development/Java
