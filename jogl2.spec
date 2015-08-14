@@ -21,7 +21,7 @@ Patch2:         %{name}-0002-deactivate-debug-printf.patch
 Patch3:         %{name}-0003-delete-not-supported-API.patch
 Patch4:         %{name}-0004-disable-some-tests.patch
 
-BuildRequires:  java-devel >= 1:1.6.0
+BuildRequires:  java-1.7.0-devel
 BuildRequires:  jpackage-utils
 BuildRequires:  p7zip
 BuildRequires:  gluegen2-devel = %{version}
