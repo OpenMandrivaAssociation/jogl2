@@ -22,11 +22,11 @@ BuildRequires:  java-devel
 BuildRequires:  jpackage-utils
 BuildRequires:  gluegen2-devel = %{version}
 BuildRequires:  eclipse-swt
-BuildRequires:  libXt-devel
-BuildRequires:  libXrender-devel
-BuildRequires:  libXxf86vm-devel
-BuildRequires:  libXrandr-devel
-BuildRequires:  libXcursor-devel
+BuildRequires:  pkgconfig(xt)
+BuildRequires:  pkgconfig(xrender)
+BuildRequires:  pkgconfig(xxf86vm)
+BuildRequires:  pkgconfig(xrandr)
+BuildRequires:  pkgconfig(xcursor)
 BuildRequires:  maven-local
 
 Requires:       java
