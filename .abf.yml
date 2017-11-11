@@ -1,2 +1,5 @@
-sources:
+removed_sources:
   jogl-v2.2.4.tar.7z: 86a0e6a718c05bfd8fedaf292b219417004f1afa
+sources:
+  jogl-v2.3.2.tar.xz: c217536461af7adff44354ec10fc7731a1ba31e8
+
