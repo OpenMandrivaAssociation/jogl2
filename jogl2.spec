@@ -1,6 +1,7 @@
 %{?_javapackages_macros:%_javapackages_macros}
 
 Name:           jogl2
+Epoch:          2
 Version:        2.3.2
 Release:        5.1
 %global src_name jogl-v%{version}
