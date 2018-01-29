@@ -57,3 +57,18 @@
      fprintf(stderr, "XineramaIsEnabled: has Xinerama Ext: ext %d, query-func %p\n", gotXinExt, xineramaQueryFunc);
    #endif
  
+--- a/src/nativewindow/native/x11/Xmisc.c
++++ b/src/nativewindow/native/x11/Xmisc.c
+@@ -184,10 +184,12 @@ static int x11ErrorHandler(Display *dpy,
+         XGetErrorDatabaseText(dpy, "XRequest", errCodeStr, "Unknown", reqCodeStr, sizeof(reqCodeStr));
+         XGetErrorText(dpy, e->error_code, errCodeStr, sizeof(errCodeStr));
+ 
++/*
+         fprintf(stderr, "Info: Nativewindow X11 Error: %d - %s, dpy %p, id %x, # %d: %d:%d %s\n",
+             e->error_code, errCodeStr, e->display, (int)e->resourceid, (int)e->serial,
+             (int)e->request_code, (int)e->minor_code, reqCodeStr);
+         fflush(stderr);
++*/
+ 
+         if( errorHandlerDebug || errorHandlerThrowException ) {
+             jniEnv = NativewindowCommon_GetJNIEnv(0 /* asDaemon */, &shallBeDetached);
